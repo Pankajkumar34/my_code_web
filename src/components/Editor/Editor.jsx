@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
-const CodeEditor = ({ setIsPreview,setOutput,output }) => {
+import useReduxDispatch from "../../hooks/useDispatchRedux";
+
+import { AddCode } from '../../redux/userCode'
+const CodeEditor = ({ setIsPreview, setOutput, output }) => {
+ 
+  const dispatch = useReduxDispatch()
   const monaco = useMonaco();
   const [codeText, setCodeText] = useState(
     "// Write your code here or paste here"
   );
-  
+
   const handleEditorChange = (value) => {
     setCodeText(value);
   };
@@ -26,13 +31,17 @@ const CodeEditor = ({ setIsPreview,setOutput,output }) => {
     } catch (error) {
       setOutput(capturedOutput + error.toString());
     } finally {
-      console.log = originalConsoleLog; 
+      console.log = originalConsoleLog;
     }
   };
-const saveData=(e)=>{
-  e.preventDefault()
-}
+  const saveData = (e) => {
+    e.preventDefault()
+    const obj = {
+      editorCode: codeText
 
+    }
+    dispatch(AddCode(obj))
+  }
 
   useEffect(() => {
     if (monaco) {
@@ -52,12 +61,12 @@ const saveData=(e)=>{
   console.log(output, "output");
   return (
     <div>
-    <form>
-      <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-        <div className="flex items-center justify-between border-b dark:border-gray-600">
-          <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
-            <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
-              {/* <button
+      <form>
+        <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+          <div className="flex items-center justify-between border-b dark:border-gray-600">
+            <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse dark:divide-gray-600">
+              <div className="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4">
+                {/* <button
                 type="button"
                 onClick={() => setIsPreview(true)}
                 data-tooltip-target="tooltip-fullscreen"
@@ -80,44 +89,44 @@ const saveData=(e)=>{
                 </svg>
                 <span class="sr-only">Full screen</span>
               </button> */}
+              </div>
+            </div>
+            <div className="mx-1" >
+              <button
+                type="submit" onClick={executeCode}
+                className="p-2 mx-2 text-gray-500 rounded cursor-pointer sm:ms-auto hover:text-gray-900 bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+              >
+                Preview Code
+              </button>
+              <button
+                type="submit" onClick={saveData}
+                data-modal-target="static-modal" data-modal-toggle="static-modal"
+                className="p-2 text-gray-500 rounded cursor-pointer sm:ms-auto hover:text-gray-900 bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+              >
+                Save
+              </button>
+
             </div>
           </div>
-        <div className="mx-1" >
-        <button
-            type="submit" onClick={executeCode}
-           className="p-2 mx-2 text-gray-500 rounded cursor-pointer sm:ms-auto hover:text-gray-900 bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
-           Preview Code 
-          </button>
-          <button
-            type="submit" onClick={saveData}
-             data-modal-target="static-modal" data-modal-toggle="static-modal"
-           className="p-2 text-gray-500 rounded cursor-pointer sm:ms-auto hover:text-gray-900 bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-          >
-           Save 
-          </button>
-      
+          <div className="  rounded-b-lg dark:bg-gray-800">
+            <Editor
+              height="600px"
+              width="100%"
+              defaultLanguage="javascript"
+              defaultValue={codeText}
+              theme="customTheme"
+              value={codeText}
+              onChange={handleEditorChange}
+              options={{
+                automaticLayout: true,
+                fontSize: 14,
+                scrollBeyondLastLine: false,
+              }}
+            />
+          </div>
         </div>
-        </div>
-        <div className="  rounded-b-lg dark:bg-gray-800">
-          <Editor
-            height="600px" 
-            width="100%"
-            defaultLanguage="javascript"
-            defaultValue={codeText}
-            theme="customTheme"
-            value={codeText}
-            onChange={handleEditorChange}
-            options={{
-              automaticLayout: true,
-              fontSize: 14,
-              scrollBeyondLastLine: false,
-            }}
-          />
-        </div>
-      </div>
-    </form>
- 
+      </form>
+
     </div>
   );
 };

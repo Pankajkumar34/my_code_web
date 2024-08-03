@@ -9,7 +9,7 @@ export const HomeComp = () => {
   const [toggle, setToggle] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const [output, setOutput] = useState('');
-  console.log(output, "output")
+ 
   return (
     <div
       className="w-full h-[100vh] flex items-center"
