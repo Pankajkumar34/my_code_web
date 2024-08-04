@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { girlPng, loginBanner } from "../ImageImport/imageImport";
 import { motion } from "framer-motion"
+import { FaArrowCircleRight } from "react-icons/fa";
 const Signup = () => {
   const router = useNavigate();
 
@@ -11,27 +12,29 @@ const Signup = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
+
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${loginBanner})`,
-          filter: "blur(1px)", // Adjust the blur intensity
+          filter: "blur(1px)",
           zIndex: -1,
         }}
-      ></div>
-      {/* Overlay for color and opacity */}
-      <div className="absolute inset-0 bg-black opacity-40 flex"></div>
+      >
 
-      {/* Login Form */}
+      </div>
+
+      <div className="absolute inset-0 bg-black opacity-40 flex"></div>
+      <Link to="/" className="pr-[80px] pt-3 float-right text-white relative z-[1] text-[30px]"><FaArrowCircleRight/></Link>
+
       <div className="relative z-10 flex items-center justify-around h-full w-full px-4 sm:px-6 md:px-8">
-        <motion.div   initial={{ x: -200 }}
-  whileInView={{ x: 0 }}
+        <motion.div initial={{ x: -200 }}
+          whileInView={{ x: 0 }}
           transition={{ type: "spring" }}>
           <img src={girlPng} alt="" />
         </motion.div>
-        <motion.div  initial={{scaleX:0 }}
-          whileInView={{ scaleX:1}}
+        <motion.div initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
           transition={{ type: "spring" }} className="backdrop-blur-sm rounded-lg shadow-lg border overflow-hidden max-w-md w-full p-6 md:p-8">
           <p className="text-2xl text-white text-center mb-6">Welcome back!</p>
           <div className="mb-4">
@@ -82,7 +85,7 @@ const Signup = () => {
           ></a>
           <div className="mt-6 text-center text-white">
             <Link
-              to="/login" 
+              to="/login"
               className="text-sm capitalize text-blue-600 hover:underline"
             >
               Don&apos;t have an account yet?{" "}

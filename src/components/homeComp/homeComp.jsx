@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Modal } from "../modal/modal";
 
 export const HomeComp = () => {
+  const [openModal,setOpenModal]=useState(false)
   const [toggle, setToggle] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const [output, setOutput] = useState('');
@@ -25,19 +26,17 @@ export const HomeComp = () => {
             transition={{ type: "spring" }}
             className={`w-[50%]`}
           >
-            <div className="flex gap-1">
+            <div className="flex gap-1 my-2">
               <button
                 type="button"
-                onClick={() => setToggle(true)}
-                class="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={() => setToggle(false)} style={{ backgroundColor: !toggle ? "white" : "", color: !toggle ? "black" : "" }} className="border border-white rounded text-white p-2 w-[150px] "
               >
                 Zip Upload
               </button>
 
               <button
                 type="button"
-                onClick={() => setToggle(false)}
-                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={() => setToggle(true)} style={{ backgroundColor: toggle ? "white" : "", color: toggle ? "black" : "" }} className="border border-white rounded text-white p-2  w-[150px] "
               >
                 Text Code Upload
               </button>
@@ -67,7 +66,7 @@ export const HomeComp = () => {
                   </h1>
                 )}
                 {!isPreview && (
-                  <h2 className="text-white font-extrabold text-[30px]">
+                  <h2 className="text-center text-white  text-[20px]">
                     Your Code For Backup !
                   </h2>
                 )}
@@ -93,7 +92,10 @@ export const HomeComp = () => {
           </div>
         </div>
       </div>
-      <Modal/>
+      {
+        openModal &&  <Modal setOpenModal={setOpenModal} openModal={openModal}/>
+      }
+   
     </div>
   );
 };

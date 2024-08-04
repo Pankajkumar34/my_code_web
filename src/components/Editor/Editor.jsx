@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import useReduxDispatch from "../../hooks/useDispatchRedux";
-
 import { AddCode } from '../../redux/userCode'
 const CodeEditor = ({ setIsPreview, setOutput, output }) => {
- 
+
   const dispatch = useReduxDispatch()
   const monaco = useMonaco();
   const [codeText, setCodeText] = useState(
@@ -100,7 +99,7 @@ const CodeEditor = ({ setIsPreview, setOutput, output }) => {
               </button>
               <button
                 type="submit" onClick={saveData}
-                data-modal-target="static-modal" data-modal-toggle="static-modal"
+              data-modal-target="static-modal" data-modal-toggle="static-modal"
                 className="p-2 text-gray-500 rounded cursor-pointer sm:ms-auto hover:text-gray-900 bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
               >
                 Save
