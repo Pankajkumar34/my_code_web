@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import useReduxDispatch from "../../hooks/useDispatchRedux";
 import { AddCode } from '../../redux/userCode'
-const CodeEditor = ({ setIsPreview, setOutput, output }) => {
+const CodeEditor = ({ setIsPreview, setOutput, output,setOpenModal }) => {
 
   const dispatch = useReduxDispatch()
   const monaco = useMonaco();
@@ -39,6 +39,7 @@ const CodeEditor = ({ setIsPreview, setOutput, output }) => {
       editorCode: codeText
 
     }
+    setOpenModal(true)
     dispatch(AddCode(obj))
   }
 
@@ -57,7 +58,6 @@ const CodeEditor = ({ setIsPreview, setOutput, output }) => {
   }, [monaco]);
 
 
-  console.log(output, "output");
   return (
     <div>
       <form>

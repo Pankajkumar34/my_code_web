@@ -29,14 +29,14 @@ export const HomeComp = () => {
             <div className="flex gap-1 my-2">
               <button
                 type="button"
-                onClick={() => setToggle(false)} style={{ backgroundColor: !toggle ? "white" : "", color: !toggle ? "black" : "" }} className="border border-white rounded text-white p-2 w-[150px] "
+                onClick={() => setToggle(true)} style={{ backgroundColor: toggle ? "white" : "", color: toggle ? "black" : "" }} className="border border-white rounded text-white p-2 w-[150px] "
               >
                 Zip Upload
               </button>
 
               <button
                 type="button"
-                onClick={() => setToggle(true)} style={{ backgroundColor: toggle ? "white" : "", color: toggle ? "black" : "" }} className="border border-white rounded text-white p-2  w-[150px] "
+                onClick={() => setToggle(false)} style={{ backgroundColor: !toggle ? "white" : "", color: !toggle ? "black" : "" }} className="border border-white rounded text-white p-2  w-[150px] "
               >
                 Text Code Upload
               </button>
@@ -47,6 +47,7 @@ export const HomeComp = () => {
                 setIsPreview={setIsPreview}
                 setOutput={setOutput}
                 output={output}
+                setOpenModal={setOpenModal}
               />
             ) : (
               <FileUploader />
