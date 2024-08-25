@@ -4,3 +4,20 @@
 
 
   
+.animated-title {
+    color: white;
+    display: inline-block;
+    font-size: 2em;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+}
+
+/* Animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

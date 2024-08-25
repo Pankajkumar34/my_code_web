@@ -32,7 +32,7 @@ const Popup = ({ setOpenPopup, errorMsg }) => {
                         <button  onClick={() => navigate('/signup')} data-modal-hide="popup-modal" type="button" className= " ml-7 mt-8 text-black bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:bg-gray-100 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Sign up
                             </button>
-                            <button data-modal-hide="popup-modal" type="button" className="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-red-600 rounded-lg border border-gray-200 hover:bg-red-800  hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100   ">No, cancel</button>
+                            <button data-modal-hide="popup-modal" type="button" className="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-red-600 rounded-lg border border-gray-200 hover:bg-red-800  hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100  " onClick={()=>setOpenPopup(false)}>No, cancel</button>
                         </div>
 
                     </div>
